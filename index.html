@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>안심길 추천 서비스</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <header>
+        <h1>안심길 추천 서비스</h1>
+        <p>
+          CCTV, 가로등, 파출소 정보를 기반으로 안전한 이동 경로를 분석합니다.
+        </p>
+      </header>
+
+      <section class="search-box">
+        <input type="text" id="startInput" placeholder="출발지를 입력하세요" />
+
+        <input type="text" id="endInput" placeholder="도착지를 입력하세요" />
+
+        <button onclick="searchSafeRoute()">안전 경로 조회</button>
+      </section>
+
+      <div id="map"></div>
+
+      <section id="result" class="result-box">
+        <p>출발지와 도착지를 입력해주세요.</p>
+      </section>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
