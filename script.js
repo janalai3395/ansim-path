@@ -19,7 +19,7 @@ let safetyData = [];
 
 async function loadKakaoMap() {
   try {
-    const response = await fetch("http://localhost:3000/config");
+    const response = await fetch("/config");
     const config = await response.json();
 
     const script = document.createElement("script");
@@ -64,7 +64,7 @@ async function initMap() {
 
 async function loadPublicSafetyData() {
   try {
-    const response = await fetch("http://localhost:3000/safety-data");
+    const response = await fetch("/safety-data");
     const text = await response.text();
 
     let data;
@@ -233,7 +233,7 @@ async function getKakaoRoute(startLatLng, endLatLng) {
 
   try {
     const response = await fetch(
-      `http://localhost:3000/route?origin=${origin}&destination=${destination}`,
+      `/route?origin=${origin}&destination=${destination}`,
     );
 
     const data = await response.json();

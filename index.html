@@ -3,9 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>안심길 추천 웹서비스</title>
-
     <link rel="stylesheet" href="style.css" />
   </head>
 
@@ -47,12 +45,13 @@
           <span>🟨 가로등 / 보안등</span>
           <span>🟥 파출소</span>
         </div>
-          <div class="filter-box">
-            <button onclick="filterSafetyMarkers('전체')">전체</button>
-            <button onclick="filterSafetyMarkers('CCTV')">CCTV</button>
-            <button onclick="filterSafetyMarkers('가로등')">가로등</button>
-            <button onclick="filterSafetyMarkers('파출소')">파출소</button>
-          </div>
+
+        <div class="filter-box">
+          <button onclick="filterSafetyMarkers('전체')">전체</button>
+          <button onclick="filterSafetyMarkers('CCTV')">CCTV</button>
+          <button onclick="filterSafetyMarkers('가로등')">가로등</button>
+          <button onclick="filterSafetyMarkers('파출소')">파출소</button>
+        </div>
 
         <div id="map"></div>
       </div>
