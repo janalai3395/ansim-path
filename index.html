@@ -3,31 +3,62 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>안심길 추천 서비스</title>
+
+    <title>안심길 추천 웹서비스</title>
+
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
     <div class="container">
       <header>
-        <h1>안심길 추천 서비스</h1>
+        <h1>안심길 추천 웹서비스</h1>
         <p>
-          CCTV, 가로등, 파출소 정보를 기반으로 안전한 이동 경로를 분석합니다.
+          공공데이터와 지도 API를 활용하여 경로 주변 안전시설을 분석하고 안전
+          점수를 제공합니다.
         </p>
       </header>
 
       <section class="search-box">
+        <label for="startInput">출발지</label>
         <input type="text" id="startInput" placeholder="출발지를 입력하세요" />
 
+        <button type="button" class="sub-button" onclick="useCurrentLocation()">
+          📍 현재 위치를 출발지로 사용
+        </button>
+
+        <label for="endInput">도착지</label>
         <input type="text" id="endInput" placeholder="도착지를 입력하세요" />
 
-        <button onclick="searchSafeRoute()">안전 경로 조회</button>
+        <button type="button" class="main-button" onclick="searchSafeRoute()">
+          안전 경로 조회
+        </button>
       </section>
 
-      <div id="map"></div>
+      <div id="loading" class="loading hidden">
+        <div class="spinner"></div>
+        <p>경로와 안전시설을 분석하고 있습니다...</p>
+      </div>
+
+      <div class="map-wrap">
+        <div class="legend">
+          <strong>안전시설</strong>
+          <span>🟦 CCTV</span>
+          <span>🟨 가로등 / 보안등</span>
+          <span>🟥 파출소</span>
+        </div>
+          <div class="filter-box">
+            <button onclick="filterSafetyMarkers('전체')">전체</button>
+            <button onclick="filterSafetyMarkers('CCTV')">CCTV</button>
+            <button onclick="filterSafetyMarkers('가로등')">가로등</button>
+            <button onclick="filterSafetyMarkers('파출소')">파출소</button>
+          </div>
+
+        <div id="map"></div>
+      </div>
 
       <section id="result" class="result-box">
-        <p>출발지와 도착지를 입력해주세요.</p>
+        <p>출발지와 도착지를 입력한 뒤 안전 경로 조회 버튼을 눌러주세요.</p>
       </section>
     </div>
 
