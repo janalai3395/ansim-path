@@ -31,12 +31,20 @@ async function loadKakaoMap() {
       });
     };
 
+    script.onerror = function () {
+      console.error("카카오 SDK 로드 실패");
+      alert(
+        "카카오맵 SDK 로드에 실패했습니다. 카카오 개발자센터의 Web 도메인을 확인해주세요.",
+      );
+    };
+
     document.head.appendChild(script);
   } catch (error) {
     console.error("카카오맵 로딩 실패:", error);
-    alert("카카오맵을 불러오지 못했습니다.");
   }
 }
+
+window.addEventListener("DOMContentLoaded", loadKakaoMap);
 
 async function initMap() {
   const container = document.getElementById("map");
