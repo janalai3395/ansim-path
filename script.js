@@ -18,6 +18,10 @@ let currentNearbyData = [];
 let safetyData = [];
 
 async function loadKakaoMap() {
+  if (document.querySelector('script[src*="dapi.kakao.com"]')) {
+    return;
+  }
+
   try {
     const response = await fetch("/config");
     const config = await response.json();
@@ -33,9 +37,6 @@ async function loadKakaoMap() {
 
     script.onerror = function () {
       console.error("카카오 SDK 로드 실패");
-      alert(
-        "카카오맵 SDK 로드에 실패했습니다. 카카오 개발자센터의 Web 도메인을 확인해주세요.",
-      );
     };
 
     document.head.appendChild(script);
@@ -148,6 +149,12 @@ function useCurrentLocation() {
 }
 
 async function searchSafeRoute() {
+  if (!map || !geocoder) {
+    alert("카카오맵이 아직 준비되지 않았습니다. 잠시 후 다시 시도해주세요.");
+    console.error("map/geocoder 초기화 실패", { map, geocoder });
+    return;
+  }
+
   const start = document.getElementById("startInput").value.trim();
   const end = document.getElementById("endInput").value.trim();
   const resultBox = document.getElementById("result");
@@ -656,4 +663,6 @@ function filterSafetyMarkers(type) {
   showSafetyMarkers(filtered);
 }
 
-window.addEventListener("load", loadKakaoMap);
+document.addEventListener("DOMContentLoaded", () => {
+  loadKakaoMap();
+});
